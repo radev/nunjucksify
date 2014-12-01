@@ -39,6 +39,11 @@ module.exports = function( file, opts ) {
 			var templateRef = match[1];
 			if (!required[templateRef]) {
 				if ( disableRequireWrapper ) {
+					if (templateRef[0]==='.') {
+						this.queue( null );
+						var err = new Error('Cannot use relative paths when using env loader');
+						return this.emit( 'error', err );
+					}
 					compiledTemplate += 'env.cache["' + templateRef + '"] = ';
 				}
 
