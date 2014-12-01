@@ -39,7 +39,7 @@ module.exports = function( file, opts ) {
 			var templateRef = match[1];
 			if (!required[templateRef]) {
 				if ( disableRequireWrapper ) {
-					compiledTemplate += 'env.resolved["' + templateRef + '"] = ';
+					compiledTemplate += 'env.cache["' + templateRef + '"] = ';
 				}
 
   			compiledTemplate += 'require( "' + templateRef + '" );\n';
